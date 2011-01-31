@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Player:</b>
+  <%= @character.player %>
+</p>
+
+<p>
+  <b>Campaign:</b>
+  <%= @character.campaign %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= image_tag @character.token.url %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @character.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_character_path(@character) %> |
+<%= link_to 'Back', characters_path %>
