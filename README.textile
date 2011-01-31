@@ -1,0 +1,3 @@
+h1. Gamelog
+
+A Blog tool designed specifically for GMs and players of role playing games.
