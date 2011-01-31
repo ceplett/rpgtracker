@@ -1,22 +1,14 @@
 <h1>Listing characters</h1>
 
 <table>
-  <tr>
-    <th>Token</th>
-    <th>Player</th>
-    <th>Campaign</th>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @characters.each do |character| %>
   <tr>
     <td><%= image_tag character.token.url(:small) %>
-    <td><%= character.player %></td>
-    <td><%= character.campaign %></td>
-    <td><%= character.name %></td>
+    <td>
+      <h4><%= character.name %></h4>
+      <p>Chris</p>
+      <p>Scales of War</p>
+    </td>
     <td><%= link_to 'Show', character %></td>
     <td><%= link_to 'Edit', edit_character_path(character) %></td>
     <td><%= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete %></td>
