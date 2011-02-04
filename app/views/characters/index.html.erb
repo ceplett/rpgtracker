@@ -1,21 +1,8 @@
 <h1>Listing characters</h1>
 
-<table>
-<% @characters.each do |character| %>
-  <tr>
-    <td><%= image_tag character.token.url(:small) %>
-    <td>
-      <h4><%= character.name %></h4>
-      <p>Chris</p>
-      <p>Scales of War</p>
-    </td>
-    <td><%= link_to 'Show', character %></td>
-    <td><%= link_to 'Edit', edit_character_path(character) %></td>
-    <td><%= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Character', new_character_path %>
+<div id="characters">
+<%= render @characters %>
+</div>
+<div>
+<%= link_to 'New Character', new_character_path, :class => 'button' %>
+</div>

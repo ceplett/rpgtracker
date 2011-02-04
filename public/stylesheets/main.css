@@ -1,0 +1,69 @@
+body {
+	background: #600;
+	background: #600 -webkit-gradient(linear, left top, left bottom, from(#200), to(#600)) no-repeat;
+	font-family: "Georgia", serif;
+	font-size: 16px;
+	color: #500;
+}
+#header, #footer, #content {
+	width: 860px;
+	padding-left: 50px;
+	padding-right: 50px;
+	margin: 0 auto;
+}
+#header {
+	background: url(/images/header.png) no-repeat;
+	height: 150px;
+}
+#content {
+	background: url(/images/content.png) repeat-y;
+	height: auto;
+}
+#footer {
+	background: url(/images/footer.png) no-repeat;
+	height: 150px;
+}
+input[type=text] {
+	font-family: "Georgia", serif;
+	font-size: 16px;
+	background: rgba(255, 255, 255, 0.25);
+	padding: 0.35em;
+	border-radius: 0.45em;
+	border: 1px solid #8b704b;
+}
+input[type=submit], a.button {
+	font-family: "Georgia", serif;
+	font-size: 16px;
+	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, from(#600), to(#200));
+	color: #eee2d0;
+	padding: 0.35em 1.0em;
+	border-radius: 0.45em;
+	border: none;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+input:active[type=submit], a.button:active {
+	background: -webkit-gradient(linear, left top, left bottom, from(#200), to(#600));
+}
+
+div.character {
+	position: relative;
+	padding: 10px;
+	padding-left: 84px;
+	background: rgba(64,0,0,0.1);
+	border: 1px solid rgba(64,0,0,0.2);
+	overflow: hidden;
+	min-height: 64px;
+	border-radius: 10px;
+	margin-top: 1em;
+}
+div.character:first-child {
+	margin-top: 0;
+}
+div.character img {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
