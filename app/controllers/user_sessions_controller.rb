@@ -16,7 +16,8 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    current_user_session.destroy
+    sess = current_user_session
+    sess.destroy if sess
     redirect_to_logout_target
   end
 
