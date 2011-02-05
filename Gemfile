@@ -4,7 +4,6 @@ gem 'rails', '~> 3.0.3'
 gem 'mysql'
 gem 'jquery-rails'
 gem 'dalli'
-gem 'authlogic'
 gem 'paperclip', '~> 2.3'
 
 group :test do

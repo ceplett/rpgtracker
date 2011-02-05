@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   respond_to  :html
 
-  before_filter :require_current_user, :except => [:new, :create]
+  before_filter :require_current_user, :only => [:show]
 
   def show
     @user = current_user

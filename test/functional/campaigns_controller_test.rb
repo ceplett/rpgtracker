@@ -5,12 +5,6 @@ class CampaignsControllerTest < ActionController::TestCase
     @campaign = Factory(:campaign)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:campaigns)
-  end
-
   test "should get new" do
     get :new
     assert_response :success
@@ -39,11 +33,4 @@ class CampaignsControllerTest < ActionController::TestCase
     assert_redirected_to campaign_path(assigns(:campaign))
   end
 
-  test "should destroy campaign" do
-    assert_difference('Campaign.count', -1) do
-      delete :destroy, :id => @campaign.to_param
-    end
-
-    assert_redirected_to campaigns_path
-  end
 end
