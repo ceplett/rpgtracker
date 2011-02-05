@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   respond_to :html
-  before_filter :require_current_user
+  before_filter :authenticate_user!
   before_filter :require_ownership, :only => [:edit, :update]
 
   def show
@@ -43,7 +43,7 @@ private
 
   def require_ownership
     camp = current_campaign
-    redirect_to campaign_url(camp) unless current_user == camp.gm
+    render_not_found(:unauthorized) unless current_user == camp.gm
   end
 
 end

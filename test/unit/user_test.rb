@@ -2,16 +2,6 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  def test_validations
-    u = Factory.build(:user)
-    assert u.valid?
-
-    u = Factory.build(:user, :name => nil, :email => nil)
-    assert u.invalid?
-    assert !u.errors[:name].blank?
-    assert !u.errors[:email].blank?
-  end
-
   def test_campaigns
     u = Factory(:user)
     assert_equal 0, u.campaigns.count

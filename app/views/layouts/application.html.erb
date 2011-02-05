@@ -10,16 +10,19 @@
 
 <div id="header">
 	<ul class="account">
-	<%- if current_user -%>
+	<%- if user_signed_in? -%>
 		<li>Welcome, <%= current_user.name %></li>
-		<li><%#= link_to 'Log Out', user_session_path, :method => :delete %></li>
+		<li><%= link_to_unless_current 'Edit Account', edit_user_registration_path %></li>
+		<li><%= link_to 'Log Out', destroy_user_session_path %></li>
 	<%- else -%>
-		<li><%#= link_to 'Log In', new_user_session_path %>
-		<li><%= link_to 'Register', new_user_path %>
+		<li><%= link_to 'Log In', new_user_session_path %>
+		<li><%= link_to 'Register', new_user_registration_path %>
 	<%- end -%>
 	</ul>
 </div>
 <div id="content">
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 <%= yield %>
 </div>
 <div id="footer">

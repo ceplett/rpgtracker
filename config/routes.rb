@@ -1,7 +1,8 @@
 Gamelog::Application.routes.draw do
+  devise_for :users
+
   resources :characters
   resources :campaigns, :except => [:index, :destroy]
-  resource  :user, :only => [:show, :new, :create]
 
   root :to => 'users#show'
 end

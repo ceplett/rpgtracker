@@ -12,8 +12,26 @@ body {
 	margin: 0 auto;
 }
 #header {
+	position: relative;
 	background: url(/images/header.png) no-repeat;
 	height: 150px;
+}
+#header > ul.account {
+	position: absolute;
+	overflow: hidden;
+	background: rgba(64,0,0,0.1);
+	border: 1px solid rgba(64,0,0,0.2);
+	border-radius: 6px;
+	right: 50px;
+	bottom: 0px;
+}
+#header > ul.account > li {
+	float: left;
+	padding: 4px 8px;
+	border-left: 1px solid rgba(64,0,0,0.2);
+}
+#header > ul.account > li:first-child {
+	border-left: none;
 }
 #content {
 	background: url(/images/content.png) repeat-y;

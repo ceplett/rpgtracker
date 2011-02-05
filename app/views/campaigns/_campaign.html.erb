@@ -1,4 +1,10 @@
 <%= div_for campaign do %>
   <h4><%= campaign.title %></h4>
   <p><%= campaign.description %></p>
+  <ul>
+    <li><%= link_to 'Show', campaign_path(campaign) %></li>
+  <%- if current_user == campaign.gm -%>
+    <li><%= link_to 'Edit', edit_campaign_path(campaign) %></li>
+  <%- end -%>
+  </ul>
 <% end %>

@@ -1,4 +1,6 @@
 class CharactersController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /characters
   # GET /characters.xml
   def index

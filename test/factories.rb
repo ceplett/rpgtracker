@@ -1,8 +1,8 @@
 Factory.define :user do |user|
   user.sequence(:name)        { |n| "John Q Gamer the #{n.ordinalize}" }
   user.sequence(:email)       { |n| "user#{n}@somedomain.com" }
-  # user.password               'password'
-  # user.password_confirmation  'password'
+  user.password               'password'
+  user.password_confirmation  'password'
 end
 
 Factory.define :campaign do |campaign|
