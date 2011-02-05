@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CampaignsControllerTest < ActionController::TestCase
   setup do
-    @campaign = campaigns(:one)
+    @campaign = Factory(:campaign)
   end
 
   test "should get index" do

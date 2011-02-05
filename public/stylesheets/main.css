@@ -23,7 +23,7 @@ body {
 	background: url(/images/footer.png) no-repeat;
 	height: 150px;
 }
-input[type=text] {
+input[type=text], input[type=password], textarea {
 	font-family: "Georgia", serif;
 	font-size: 16px;
 	background: rgba(255, 255, 255, 0.25);
@@ -48,7 +48,7 @@ input:active[type=submit], a.button:active {
 	background: -webkit-gradient(linear, left top, left bottom, from(#200), to(#600));
 }
 
-div.character {
+div.character, div.campaign {
 	position: relative;
 	padding: 10px;
 	padding-left: 84px;
@@ -66,4 +66,8 @@ div.character img {
 	position: absolute;
 	top: 10px;
 	left: 10px;
+}
+div.campaign {
+	padding-left: 10px;
+	min-height: 0;
 }

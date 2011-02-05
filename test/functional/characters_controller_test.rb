@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CharactersControllerTest < ActionController::TestCase
   setup do
-    @character = characters(:one)
+    @character = Factory(:character)
   end
 
   test "should get index" do

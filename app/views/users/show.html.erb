@@ -10,6 +10,6 @@
   <%= @user.email %>
 </p>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h2>My Campaigns</h2>
+<%= render @user.campaigns %>
+<%= link_to 'Create New Campaign', new_campaign_path, :class => 'button'%>
