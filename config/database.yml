@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: gamelog_development
+  database: rpgtracker_development
   pool: 5
   username: root
   password:
@@ -10,7 +10,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: gamelog_test
+  database: rpgtracker_test
   pool: 5
   username: root
   password:
@@ -19,7 +19,7 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  database: gamelog_production
+  database: rpgtracker_production
   pool: 5
   username: root
   password:

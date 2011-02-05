@@ -1,4 +1,4 @@
-Gamelog::Application.routes.draw do
+RpgTracker::Application.routes.draw do
   devise_for :users
 
   resources :characters
