@@ -10,15 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131024922) do
+ActiveRecord::Schema.define(:version => 20110207010824) do
 
   create_table "campaigns", :force => true do |t|
-    t.integer  "gm_id"
-    t.string   "title"
+    t.integer  "gm_id",       :null => false
+    t.string   "title",       :null => false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "campaigns", ["gm_id"], :name => "index_campaigns_on_gm_id"
 
   create_table "characters", :force => true do |t|
     t.integer  "player_id"
@@ -35,6 +37,18 @@ ActiveRecord::Schema.define(:version => 20110131024922) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "campaign_id", :null => false
+    t.string   "email",       :null => false
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["campaign_id"], :name => "index_invitations_on_campaign_id"
+  add_index "invitations", ["email"], :name => "index_invitations_on_email"
+  add_index "invitations", ["player_id"], :name => "index_invitations_on_player_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                :null => false
