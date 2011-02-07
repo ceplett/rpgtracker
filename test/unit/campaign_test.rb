@@ -2,6 +2,16 @@ require 'test_helper'
 
 class CampaignTest < ActiveSupport::TestCase
 
+  def test_title
+    u = Factory.build(:campaign, :title => nil)
+    assert u.invalid?
+    assert !u.errors[:title].blank?
+
+    u.title = 'This is a test'
+    assert u.valid?
+    assert u.errors[:title].blank?
+  end
+
   def test_gm
     u = Factory(:user)
     assert_equal 0, u.campaigns.count

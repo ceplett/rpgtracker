@@ -1,12 +1,13 @@
 class CreateCampaigns < ActiveRecord::Migration
   def self.up
     create_table :campaigns do |t|
-      t.references :gm
-      t.string :title
-      t.text :description
-
+      t.references  :gm,          :null => false
+      t.string      :title,       :null => false
+      t.text        :description
       t.timestamps
     end
+
+    add_index :campaigns, :gm_id
   end
 
   def self.down

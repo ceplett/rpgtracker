@@ -14,23 +14,35 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test 'create should redirect to login if not logged in' do
-    camp = Factory(:campaign)
     assert_no_difference 'Campaign.count' do
-      post :create, :campaign => camp.attributes
+      post :create, :campaign => valid_campaign_attributes
     end
   end
 
   test 'should create campaign' do
     user = Factory(:user)
-    camp = Factory.build(:campaign, :gm => nil)
     sign_in user
     assert_difference 'Campaign.count', 1 do
-      post :create, :campaign => camp.attributes
+      post :create, :campaign => valid_campaign_attributes
     end
     actual = assigns(:campaign)
     assert_not_nil actual
     assert_equal user, actual.gm
     assert_redirected_to campaign_path(actual)
+  end
+
+  test 'should not create campaign with invalid attributes' do
+    user = Factory(:user)
+    sign_in user
+    assert_no_difference 'Campaign.count' do
+      post :create, :campaign => invalid_campaign_attributes
+    end
+    actual = assigns(:campaign)
+    assert_not_nil actual
+    assert actual.invalid?
+    assert_equal user, actual.gm
+    assert_response :success
+    assert_template :new
   end
 
   test 'show should redirect if not logged in' do
@@ -72,31 +84,53 @@ class CampaignsControllerTest < ActionController::TestCase
 
   test 'create should redirect if not logged in' do
     camp = Factory(:campaign)
-    changed_attr = camp.attributes.dup
-    changed_attr['title'] = 'New Title'
-    put :update, :id => camp.to_param, :campaign => changed_attr
+    put :update, :id => camp.to_param, :campaign => valid_campaign_attributes
     assert_redirected_to new_user_session_url
   end
 
   test 'create should be unauthorized if non-gm is logged in' do
     camp = Factory(:campaign)
     sign_in Factory(:user)
-    changed_attr = camp.attributes.dup
-    changed_attr['title'] = 'New Title'
-    put :update, :id => camp.to_param, :campaign => changed_attr
+    put :update, :id => camp.to_param, :campaign => valid_campaign_attributes
     assert_response :unauthorized
   end
 
   test 'should update campaign if gm logged in' do
     camp = Factory(:campaign)
     sign_in camp.gm
-    changed_attr = camp.attributes.dup
-    changed_attr['title'] = 'New Title'
-    put :update, :id => camp.to_param, :campaign => changed_attr
+    put :update, :id => camp.to_param, :campaign => valid_campaign_attributes
     actual = assigns(:campaign)
     assert_not_nil actual
-    assert_equal 'New Title', actual.title
+    assert_equal 'This is a test', actual.title
     assert_redirected_to campaign_url(actual)
+  end
+
+  test 'should not update campaign with invalid attributes' do
+    camp = Factory(:campaign)
+    sign_in camp.gm
+    put :update, :id => camp.to_param, :campaign => invalid_campaign_attributes
+    actual = assigns(:campaign)
+    assert_not_nil actual
+    assert actual.invalid?
+    assert !actual.errors[:title].blank?
+    assert_response :success
+    assert_template :edit
+  end
+
+private
+
+  def valid_campaign_attributes
+    {
+      :title => 'This is a test',
+      :description => 'Now is the winter of our discontent'
+    }
+  end
+
+  def invalid_campaign_attributes
+    {
+      :title => '', # the title can't be blank!
+      :description => 'Now is the winter of our discontent'
+    }
   end
 
 end

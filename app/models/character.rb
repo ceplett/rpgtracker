@@ -5,6 +5,7 @@ class Character < ActiveRecord::Base
   has_attached_file :token, :styles => {:small => '64x64>'}
   has_attached_file :portrait
 
+  validates :name, :presence => true
   validates :player, :presence => true
   validates :campaign, :presence => true
 end

@@ -2,7 +2,7 @@
   <%= image_tag character.token.url(:small) %>
   <div class="info">
     <h4><%= character.name %></h4>
-    <p>Chris</p>
-    <p>Scales of War</p>
+    <p><%= character.player.name %></p>
+    <p><%= character.campaign.title %></p>
   </div>
 <% end %>

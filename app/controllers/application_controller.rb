@@ -25,12 +25,10 @@ private
   end
 
   def after_sign_in_path_for(resource)
-    logger.debug 'after_sign_in_path_for'
     session.delete(:login_target) || root_url
   end
 
   def after_sign_out_path_for(resource)
-    logger.debug 'after_sign_out_path_for'
     session.delete(:logout_target) || root_url
   end
 

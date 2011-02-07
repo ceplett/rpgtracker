@@ -1,85 +1,57 @@
 class CharactersController < ApplicationController
+  respond_to :html
+
   before_filter :authenticate_user!
+  before_filter :require_current_campaign
+  before_filter :require_current_character, :except => [:new, :create]
+  before_filter :require_ownership, :only => [:edit, :update]
 
-  # GET /characters
-  # GET /characters.xml
-  def index
-    @characters = Character.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @characters }
-    end
-  end
-
-  # GET /characters/1
-  # GET /characters/1.xml
   def show
-    @character = Character.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @character }
-    end
+    @character = current_campaign.characters.find_by_id(params[:id])
+    respond_with @character
   end
 
-  # GET /characters/new
-  # GET /characters/new.xml
   def new
-    @character = Character.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @character }
-    end
+    @character = current_campaign.characters.build :player => current_user
+    respond_with @character
   end
 
-  # GET /characters/1/edit
-  def edit
-    @character = Character.find(params[:id])
-  end
-
-  # POST /characters
-  # POST /characters.xml
   def create
-    @character = Character.new(params[:character])
-
-    respond_to do |format|
-      if @character.save
-        format.html { redirect_to(@character, :notice => 'Character was successfully created.') }
-        format.xml  { render :xml => @character, :status => :created, :location => @character }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @character.errors, :status => :unprocessable_entity }
-      end
-    end
+    @character = current_campaign.characters.create(params[:character].merge(:player => current_user))
+    respond_with @character, :location => [@character.campaign, @character]
   end
 
-  # PUT /characters/1
-  # PUT /characters/1.xml
+  def edit
+    @character = current_character
+    respond_with @character
+  end
+
   def update
-    @character = Character.find(params[:id])
-
-    respond_to do |format|
-      if @character.update_attributes(params[:character])
-        format.html { redirect_to(@character, :notice => 'Character was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @character.errors, :status => :unprocessable_entity }
-      end
-    end
+    @character = current_character
+    @character.update_attributes(params[:character])
+    respond_with @character, :location => [@character.campaign, @character]
   end
 
-  # DELETE /characters/1
-  # DELETE /characters/1.xml
-  def destroy
-    @character = Character.find(params[:id])
-    @character.destroy
+private
 
-    respond_to do |format|
-      format.html { redirect_to(characters_url) }
-      format.xml  { head :ok }
-    end
+  def current_campaign
+    @current_campaign ||= Campaign.find_by_id(params[:campaign_id])
   end
+
+  def current_character
+    @current_character ||= current_campaign.characters.find_by_id(params[:id])
+  end
+
+  def require_current_character
+    render_not_found unless current_character
+  end
+
+  def require_current_campaign
+    render_not_found unless current_campaign
+  end
+
+  def require_ownership
+    render_not_found(:unauthorized) unless current_user == current_character.player
+  end
+
 end

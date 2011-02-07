@@ -4,4 +4,5 @@ class Campaign < ActiveRecord::Base
   has_many    :players, :through => :characters
 
   validates   :gm, :presence => true
+  validates   :title, :presence => true
 end

@@ -7,4 +7,10 @@ end
 
 class ActionController::TestCase
   include Devise::TestHelpers
+
+  def set_current_user(user=nil)
+    user ||= Factory(:user)
+    sign_in user
+    user
+  end
 end
