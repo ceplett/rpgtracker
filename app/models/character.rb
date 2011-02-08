@@ -8,4 +8,8 @@ class Character < ActiveRecord::Base
   validates :name, :presence => true
   validates :player, :presence => true
   validates :campaign, :presence => true
+
+  def to_s
+    name
+  end
 end

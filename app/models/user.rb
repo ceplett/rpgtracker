@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   has_many :characters, :foreign_key => :player_id
 
   validates :name, :presence => true
+
+  def to_s
+    name
+  end
 end

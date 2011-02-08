@@ -1,10 +1,18 @@
 <%= div_for campaign do %>
-  <h4><%= campaign.title %></h4>
+  <h3><%= link_to campaign, campaign %></h3>
+  <h4><%= campaign.gm %></h4>
   <p><%= campaign.description %></p>
-  <ul>
-    <li><%= link_to 'Show', campaign_path(campaign) %></li>
+  <%= content_tag :ul do %>
+    <% campaign.characters.each do |character| %>
+      <%= content_tag :li, link_to(character, [campaign, character]) %>
+    <% end %>
+  <% end if campaign.characters.exists? %>
+  <div class="buttons">
+    <%= link_to 'Show', campaign_path(campaign), :class => 'button' %>
   <%- if current_user == campaign.gm -%>
-    <li><%= link_to 'Edit', edit_campaign_path(campaign) %></li>
+    <%= link_to 'Edit', edit_campaign_path(campaign), :class => 'button' %>
+  <%- else -%>
+    <%= link_to 'Create Character', new_campaign_character_path(campaign), :class => 'button' %>
   <%- end -%>
-  </ul>
+  </div>
 <% end %>

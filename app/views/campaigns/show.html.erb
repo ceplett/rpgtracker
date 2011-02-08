@@ -13,6 +13,11 @@
   <%= @campaign.description %>
 </p>
 
+<h2>Characters</h2>
+<div class="characters">
+  <%= render @campaign.characters %>
+</div>
+
 <ul>
   <li><%= link_to 'Edit', edit_campaign_path(@campaign) %></li>
 </ul>

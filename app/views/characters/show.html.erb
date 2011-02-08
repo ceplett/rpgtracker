@@ -5,7 +5,7 @@
 
 <p>
   <b>Campaign:</b>
-  <%= @character.campaign %>
+  <%= link_to @character.campaign, @character.campaign %>
 </p>
 
 <p>
@@ -18,6 +18,5 @@
   <%= @character.name %>
 </p>
 
-
-<%= link_to 'Edit', edit_campaign_character_path(@character.campaign, @character) %> |
+<%= link_to 'Edit', [@character.campaign, @character] %> |
 <%= link_to 'Back', @character.campaign %>

@@ -4,6 +4,11 @@ class CampaignsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :require_ownership, :only => [:edit, :update]
 
+  def index
+    @campaigns = Campaign.scoped
+    respond_with @campaigns
+  end
+
   def show
     @campaign = Campaign.find(params[:id])
     respond_with @campaign

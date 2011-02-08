@@ -6,4 +6,8 @@ class Campaign < ActiveRecord::Base
 
   validates   :gm, :presence => true
   validates   :title, :presence => true
+
+  def to_s
+    title
+  end
 end
