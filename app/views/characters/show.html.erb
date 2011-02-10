@@ -18,5 +18,5 @@
   <%= @character.name %>
 </p>
 
-<%= link_to 'Edit', [@character.campaign, @character] %> |
+<%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', @character.campaign %>

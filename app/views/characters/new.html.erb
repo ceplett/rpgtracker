@@ -1,5 +1,3 @@
 <h1>New character</h1>
-
-<%= render 'form' %>
-
+<%= render 'form', :object => [@character.campaign, @character] %>
 <%= link_to 'Back', @character.campaign %>

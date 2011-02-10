@@ -49,7 +49,7 @@ class CharactersControllerTest < ActionController::TestCase
     assert assigns(:character).valid?
     assert_equal user, assigns(:character).player
     assert_equal @campaign, assigns(:character).campaign
-    assert_redirected_to campaign_character_path(@campaign, assigns(:character))
+    assert_redirected_to assigns(:character)
   end
 
   test 'should not create character with invalid attributes' do
@@ -69,34 +69,20 @@ class CharactersControllerTest < ActionController::TestCase
   [:show, :edit].each do |action|
     test "#{action} should redirect if not logged in" do
       character = @campaign.characters.create valid_character_attributes.merge(:player => Factory(:user))
-      get action, :campaign_id => @campaign.to_param, :id => character.to_param
+      get action, :id => character.to_param
       assert_redirected_to new_user_session_url
-    end
-
-    test "#{action} should not be found for non-existent campaign" do
-      set_current_user
-      character = Factory(:character)
-      get action, :campaign_id => 'nosir', :id => character.to_param
-      assert_response :not_found
-    end
-
-    test "#{action} should not be found for wrong campaign" do
-      set_current_user
-      character = Factory(:character)
-      get action, :campaign_id => @campaign.to_param, :id => character.to_param
-      assert_response :not_found
     end
 
     test "#{action} should not be found for non-existent character" do
       set_current_user
-      get action, :campaign_id => @campaign.to_param, :id => 'nosir'
+      get action, :id => 'nosir'
       assert_response :not_found
     end
 
     test "should get #{action}" do
       user = set_current_user
       character = @campaign.characters.create valid_character_attributes.merge(:player => user)
-      get action, :campaign_id => @campaign.to_param, :id => character.to_param
+      get action, :id => character.to_param
       assert_response :success
       assert_equal character, assigns(:character)
     end
@@ -105,7 +91,7 @@ class CharactersControllerTest < ActionController::TestCase
   test "edit should be unauthorized" do
     user = set_current_user
     character = @campaign.characters.create valid_character_attributes.merge(:player => Factory(:user))
-    get :edit, :campaign_id => @campaign.to_param, :id => character.to_param
+    get :edit, :id => character.to_param
     assert_response :unauthorized
   end
 

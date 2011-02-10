@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(:version => 20110207010824) do
     t.string   "portrait_content_type"
     t.integer  "portrait_file_size"
     t.datetime "portrait_updated_at"
+    t.string   "sheet_file_name"
+    t.string   "sheet_content_type"
+    t.integer  "sheet_file_size"
+    t.datetime "sheet_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

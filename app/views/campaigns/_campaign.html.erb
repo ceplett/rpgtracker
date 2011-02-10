@@ -4,11 +4,11 @@
   <p><%= campaign.description %></p>
   <%= content_tag :ul do %>
     <% campaign.characters.each do |character| %>
-      <%= content_tag :li, link_to(character, [campaign, character]) %>
+      <%= content_tag :li, link_to(character, character) %>
     <% end %>
   <% end if campaign.characters.exists? %>
   <div class="buttons">
-    <%= link_to 'Show', campaign_path(campaign), :class => 'button' %>
+    <%= link_to 'Show', campaign, :class => 'button' %>
   <%- if current_user == campaign.gm -%>
     <%= link_to 'Edit', edit_campaign_path(campaign), :class => 'button' %>
   <%- else -%>

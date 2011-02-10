@@ -1,7 +1,7 @@
 <%= div_for character do %>
-  <%= link_to image_tag(character.token.url(:small)), [character.campaign, character] %>
+  <%= link_to image_tag(character.token.url(:small)), character %>
   <div class="info">
-    <h4><%= link_to character, [character.campaign, character] %></h4>
+    <h4><%= link_to character, character %></h4>
     <p><%= character.player.name %></p>
     <p><%= link_to_unless_current character.campaign.title, character.campaign %></p>
   </div>

@@ -2,12 +2,12 @@ class CharactersController < ApplicationController
   respond_to :html
 
   before_filter :authenticate_user!
-  before_filter :require_current_campaign
+  before_filter :require_current_campaign, :only => [:new, :create]
   before_filter :require_current_character, :except => [:new, :create]
   before_filter :require_ownership, :only => [:edit, :update]
 
   def show
-    @character = current_campaign.characters.find_by_id(params[:id])
+    @character = current_character
     respond_with @character
   end
 
@@ -18,7 +18,7 @@ class CharactersController < ApplicationController
 
   def create
     @character = current_campaign.characters.create(params[:character].merge(:player => current_user))
-    respond_with @character, :location => [@character.campaign, @character]
+    respond_with @character
   end
 
   def edit
@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
   def update
     @character = current_character
     @character.update_attributes(params[:character])
-    respond_with @character, :location => [@character.campaign, @character]
+    respond_with @character
   end
 
 private
@@ -39,7 +39,7 @@ private
   end
 
   def current_character
-    @current_character ||= current_campaign.characters.find_by_id(params[:id])
+    @current_character ||= Character.find_by_id(params[:id])
   end
 
   def require_current_character
