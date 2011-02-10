@@ -7,7 +7,7 @@ development:
   password:
   host: localhost
 
-test:
+test: &test
   adapter: mysql
   encoding: utf8
   database: rpgtracker_test
@@ -24,3 +24,6 @@ production:
   username: root
   password:
   host: localhost
+
+cucumber:
+  <<: *test
