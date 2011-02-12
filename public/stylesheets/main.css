@@ -41,7 +41,7 @@ body {
 	background: url(/images/footer.png) no-repeat;
 	height: 150px;
 }
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=email], input[type=password], textarea {
 	font-family: "Georgia", serif;
 	font-size: 16px;
 	background: rgba(255, 255, 255, 0.25);

@@ -1,29 +1,10 @@
-<%= form_for object, :html => {:multipart => true} do |f| %>
-  <% if @character.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
-
-      <ul>
-      <% @character.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= semantic_form_for object, :html => {:multipart => true} do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :token %>
+    <%= form.input :sheet %>
+    <%= form.input :name %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :token %><br />
-    <%= f.file_field :token %>
-  </div>
-  <div class="field">
-    <%= f.label :sheet %><br />
-    <%= f.file_field :sheet %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= form.buttons %>
+    <%= form.commit_button %>
+  <% end %>
 <% end %>

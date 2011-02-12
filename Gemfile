@@ -5,6 +5,7 @@ gem 'mysql'
 gem 'jquery-rails'
 gem 'dalli'
 gem 'devise'
+gem 'formtastic'
 gem 'paperclip', '~> 2.3'
 
 group :test do
