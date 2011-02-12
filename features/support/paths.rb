@@ -17,6 +17,15 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /the page for the (.+) (name|title)d \"(.+)\"/
+      object_type = $1; field = $2; id_value = $3
+      parts = object_type.split(/\s+/)
+      klass = parts.join('_').classify.constantize
+      path = parts.push('path').join('_').to_sym
+      finder = "find_by_#{field}".to_sym
+      object = klass.send(finder, id_value)
+      self.send(path, object)
+
     else
       begin
         page_name =~ /the (.*) page/
