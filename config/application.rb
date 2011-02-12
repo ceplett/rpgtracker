@@ -40,5 +40,7 @@ module RpgTracker
     config.filter_parameters += [:password]
 
     config.cache_store = :dalli_store
+
+    
   end
 end

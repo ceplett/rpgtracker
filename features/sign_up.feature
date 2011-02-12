@@ -13,3 +13,14 @@ Scenario: Cold sign up with valid info
   And I press "Sign up"
   Then I should be on the home page
   And I should see "Welcome, Joe User"
+
+Scenario: Cold sign up with invalid info
+  When I am on the home page
+  Then I should see "Sign up"
+  When I follow "Sign up"
+  Then I should be on the new user registration page
+  And I press "Sign up"
+  Then I should be on new user registration page
+  Then show me the page
+  And I should see "Name can't be blank"
+  And I should see "Email can't be blank"

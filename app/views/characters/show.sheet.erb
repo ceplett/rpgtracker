@@ -1,0 +1,9 @@
+<div class="page">
+  <h1><%= @character %></h1>
+  <%= image_tag @character.token.url, :alt => @character.name %>
+</div>
+<div class="page">
+  <% 5.times do %>
+    <%= render :partial => 'card' %>
+  <% end%>
+</div>

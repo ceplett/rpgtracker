@@ -1,0 +1,41 @@
+body {
+	background: white;
+	color: black;
+	font-family: "Georgia", serif;
+	font-size: 12pt;
+}
+
+div.page {
+	page-break-before: always;
+	width: 8in;
+	height: 10in;
+	margin: 0 auto;
+}
+
+div.card {
+	width: 2.56in;
+	height: 3.25in;
+	float: left;
+	margin: 0 0 0.125in 0.125in;
+	background: white;
+	font-size: 8pt;
+	border: 1pt solid rgb(128, 128, 128);
+	overflow: hidden;
+	border-radius: 0.0625in;
+}
+div.card:nth-child(3n+1) {
+	margin-left: 0;
+}
+div.card > h1, div.card > p {
+	padding: 0.0625in;
+}
+div.card > h1 {
+	color: white;
+}
+div.card > h1 > span {
+	float: right;
+	font-weight: normal;
+}
+div.card.daily > h1 {
+	background: rgb(128, 128, 128);
+}

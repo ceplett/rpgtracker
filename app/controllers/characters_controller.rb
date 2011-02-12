@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
-  respond_to :html
+  respond_to  :html
+  respond_to  :sheet, :only => :show
 
   before_filter :authenticate_user!
   before_filter :require_current_campaign, :only => [:new, :create]
