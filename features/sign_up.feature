@@ -20,5 +20,5 @@ Scenario: Cold sign up with invalid info
   When I follow "Sign up"
   Then I should be on the new user registration page
   And I press "Sign up"
-  Then I should see "Name can't be blank"
-  And I should see "Email can't be blank"
+  Then I should see "can't be blank" within "#user_name_input" 
+  And I should see "can't be blank" within "#user_email_input"
