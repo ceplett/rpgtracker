@@ -7,8 +7,8 @@
 	<%= csrf_meta_tag %>
 </head>
 <body>
-
-<div id="header">
+<div id="header"><div class="clearfix">
+	<h1><%= link_to_unless_current 'RPG Tracker', root_url %></h1>
 	<ul class="account">
 	<%- if user_signed_in? -%>
 		<li>Welcome, <%= link_to_unless_current current_user.name, root_path %></li>
@@ -19,14 +19,14 @@
 		<li><%= link_to 'Register', new_user_registration_path %>
 	<%- end -%>
 	</ul>
-</div>
-<div id="content">
+</div></div>
+<div id="content"><div class="clearfix">
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
 <%= yield %>
-</div>
-<div id="footer">
-</div>
+</div></div>
+<div id="footer"><div class="clearfix">
+</div></div>
 
 </body>
 </html>

@@ -8,9 +8,14 @@
   <%= @user.email %>
 </p>
 
-<h2>My Campaigns</h2>
-<%= render @user.campaigns %>
-<%= link_to 'Create New Campaign', new_campaign_path, :class => 'button'%>
-
-<h2>My Characters</h2>
-<%= render @user.characters %>
+<div>
+<div class="column">
+  <h2>My Campaigns</h2>
+  <%= render @user.campaigns %>
+  <%= link_to 'Create New Campaign', new_campaign_path, :class => 'button'%>
+</div>
+<div class="column">
+  <h2>My Characters</h2>
+  <%= render @user.characters %>
+</div>
+</div>

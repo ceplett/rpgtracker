@@ -1,62 +1,61 @@
 body {
-	background: #600;
-	background: #600 -webkit-gradient(linear, left top, left bottom, from(#200), to(#600)) no-repeat;
+	background: #FFE0BE;
+	color: #002C4F;
 	font-family: "Georgia", serif;
 	font-size: 16px;
-	color: #500;
 }
-#header, #footer, #content {
-	width: 860px;
-	padding-left: 50px;
-	padding-right: 50px;
+#header > div, #footer > div, #content > div {
+	width: 960px;
+	padding: 10px 0;
 	margin: 0 auto;
 }
 #header {
-	position: relative;
-	background: url(/images/header.png) no-repeat;
-	height: 150px;
+	background: #FFB76A;
+	background: #FFE0BE -webkit-gradient(linear, left top, left bottom, from(#FFE0BE), to(#9A6D3D));
 }
-#header > ul.account {
-	position: absolute;
+#header h1 {
+	float: left;
+	font-size: 36px;
+	line-height: 64px;
+}
+#header h1 > a {
+	text-decoration: none;
+	color: #002C4F;
+}
+#header ul.account {
+	float:right;
 	overflow: hidden;
 	background: rgba(64,0,0,0.1);
 	border: 1px solid rgba(64,0,0,0.2);
-	border-radius: 6px;
-	right: 50px;
-	bottom: 0px;
 }
-#header > ul.account > li {
+#header ul.account > li {
 	float: left;
 	padding: 4px 8px;
 	border-left: 1px solid rgba(64,0,0,0.2);
 }
-#header > ul.account > li:first-child {
+#header ul.account > li:first-child {
 	border-left: none;
 }
-#content {
-	background: url(/images/content.png) repeat-y;
-	height: auto;
-}
-#footer {
-	background: url(/images/footer.png) no-repeat;
-	height: 150px;
+label, input {
+	display: block;
 }
 input[type=text], input[type=email], input[type=password], textarea {
 	font-family: "Georgia", serif;
 	font-size: 16px;
 	background: rgba(255, 255, 255, 0.25);
 	padding: 0.35em;
-	border-radius: 0.45em;
 	border: 1px solid #8b704b;
 }
 input[type=submit], a.button {
 	font-family: "Georgia", serif;
 	font-size: 16px;
 	font-weight: bold;
-	background: -webkit-gradient(linear, left top, left bottom, from(#600), to(#200));
-	color: #eee2d0;
-	padding: 0.35em 1.0em;
-	border-radius: 0.45em;
+	line-height: 30px;
+	border-radius: 15px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2C4F6C), to(#002C4F));
+	color: white;
+	padding: 0 20px;
+	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 	border: none;
 	text-decoration: none;
 	display: inline-block;
@@ -65,27 +64,21 @@ input[type=submit], a.button {
 input:active[type=submit], a.button:active {
 	background: -webkit-gradient(linear, left top, left bottom, from(#200), to(#600));
 }
+div.column {
+	float: left;
+	width: 470px;
+	margin-left: 20px;
+}
+div.column:first-child {
+	margin-left: 0;
+}
 
-div.character, div.campaign {
-	position: relative;
-	padding: 10px;
-	padding-left: 84px;
-	background: rgba(64,0,0,0.1);
-	border: 1px solid rgba(64,0,0,0.2);
-	overflow: hidden;
-	min-height: 64px;
-	border-radius: 10px;
-	margin-top: 1em;
-}
-div.character:first-child {
-	margin-top: 0;
-}
-div.character img {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-}
-div.campaign {
-	padding-left: 10px;
-	min-height: 0;
-}
+/* clearfix for divs containing floated elements */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+} 
