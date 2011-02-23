@@ -1,19 +1,26 @@
 class CreateCharacters < ActiveRecord::Migration
   def self.up
     create_table :characters do |t|
-      t.references  :player
-      t.references  :campaign
-      t.string      :name
+      t.string    :name
 
-      t.string    :token_file_name
-      t.string    :token_content_type
-      t.integer   :token_file_size
-      t.datetime  :token_updated_at
+      t.integer   :level
+      t.string    :race
+      t.string    :klass
+      t.string    :build
 
-      t.string    :portrait_file_name
-      t.string    :portrait_content_type
-      t.integer   :portrait_file_size
-      t.datetime  :portrait_updated_at
+      t.integer   :strength
+      t.integer   :constitution
+      t.integer   :dexterity
+      t.integer   :intelligence
+      t.integer   :wisdom
+      t.integer   :charisma
+
+      t.integer   :strength_modifier
+      t.integer   :constitution_modifier
+      t.integer   :dexterity_modifier
+      t.integer   :intelligence_modifier
+      t.integer   :wisdom_modifier
+      t.integer   :charisma_modifier
 
       t.string    :sheet_file_name
       t.string    :sheet_content_type

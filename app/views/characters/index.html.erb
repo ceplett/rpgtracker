@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @characters.each do |character| %>
+    <tr>
+      <td>
+        <%= character.name %><br/>
+        <%= character.description %>
+      </td>
+      <td>
+        <%= link_to 'Show', character, :class => 'button' %>
+        <%= link_to 'Edit', edit_character_path(character), :class => 'button' %>
+        <%= link_to 'Destroy', character_path(character), :class => 'button', :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Upload New Character', new_character_path, :class => 'button' %>

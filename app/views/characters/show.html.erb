@@ -1,22 +1,16 @@
-<p>
-  <b>Player:</b>
-  <%= @character.player %>
-</p>
+<h1><%= @character.name %></h1>
+<div class="description"><%= @character.description %></div>
 
-<p>
-  <b>Campaign:</b>
-  <%= link_to @character.campaign, @character.campaign %>
-</p>
-
-<p>
-  <b>Token:</b>
-  <%= image_tag @character.token.url %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @character.name %>
-</p>
+<table>
+<% Character::ABILITIES.each do |ability| %>
+  <tr>
+    <td><%= ability.to_s.upcase %></td>
+    <td><%= @character.send(ability) %></td>
+    <td><%= @character.ability_mod(ability) %></td>
+    <td><%= @character.ability_chk(ability) %></td>
+  </tr>
+<% end %>
+</table>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |
-<%= link_to 'Back', @character.campaign %>
+<%= link_to 'Back', characters_path %>

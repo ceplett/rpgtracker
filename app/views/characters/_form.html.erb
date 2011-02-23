@@ -1,8 +1,6 @@
-<%= semantic_form_for object, :html => {:multipart => true} do |form| %>
+<%= semantic_form_for @character, :html => {:multipart => true} do |form| %>
   <%= form.inputs do %>
-    <%= form.input :token %>
     <%= form.input :sheet %>
-    <%= form.input :name %>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button %>

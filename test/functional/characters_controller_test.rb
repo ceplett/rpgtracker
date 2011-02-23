@@ -1,111 +1,82 @@
 require 'test_helper'
 
 class CharactersControllerTest < ActionController::TestCase
-  setup do
-    @campaign = Factory(:campaign)
-  end
 
-  test 'new should redirect to login if not logged in' do
-    get :new, :campaign_id => @campaign.to_param
-    assert_redirected_to new_user_session_url
-  end
-
-  test 'new should not be found for non-existent campaign' do
-    set_current_user
-    get :new, :campaign_id => 'nosir'
-    assert_response :not_found
-  end
-
-  test 'new should succeed if logged in' do
-    user = set_current_user
-    get :new, :campaign_id => @campaign.to_param
+  test 'index should succeed without any characters' do
+    get :index
     assert_response :success
-    assert assigns(:character)
-    assert_equal user, assigns(:character).player
-    assert_equal @campaign, assigns(:character).campaign
+    assert_equal 0, assigns['characters'].size
   end
 
-  test 'create should redirect to login if not logged in' do
-    assert_no_difference 'Character.count' do
-      post :create, :campaign_id => @campaign.to_param, :character => valid_character_attributes
-    end
-    assert_redirected_to new_user_session_url
+  test 'index should succeed with a character' do
+    char = Factory(:character)
+    get :index
+    assert_response :success
+    assert_equal 1, assigns['characters'].size
+    assert_equal char, assigns['characters'].first
   end
 
-  test 'create should not be found for non-existent campaign' do
-    set_current_user
-    assert_no_difference 'Character.count' do
-      post :create, :campaign_id => 'nosir', :character => valid_character_attributes
-    end
-    assert_response :not_found
+  test 'show should succeed' do
+    expected = Factory(:character)
+    get :show, :id => expected.id
+    assert_response :success
+    assert_template 'show'
+    assert_equal expected, assigns['character']
   end
 
-  test 'should create character with valid attributes' do
-    user = set_current_user
+  test 'new should succeed' do
+    get :new
+    assert_response :success
+    assert_template 'new'
+    assert assigns['character'].is_a?(Character)
+    assert_nil assigns['character'].name
+  end
+
+  test 'create should succeed with uploaded file' do
     assert_difference 'Character.count', 1 do
-      post :create, :campaign_id => @campaign.to_param, :character => valid_character_attributes
+      post :create, :character => {
+        :sheet => fixture_file_upload('Immilzin.dnd4e')
+      }
     end
-    assert_not_nil assigns(:character)
-    assert assigns(:character).valid?
-    assert_equal user, assigns(:character).player
-    assert_equal @campaign, assigns(:character).campaign
-    assert_redirected_to assigns(:character)
+    assert assigns['character'].is_a?(Character)
+    assert_redirected_to character_path(assigns['character'])
+    assert_equal 'Immilzin', assigns['character'].name
   end
 
-  test 'should not create character with invalid attributes' do
-    user = set_current_user
+  test 'create should not succeed without uploaded file' do
     assert_no_difference 'Character.count' do
-      post :create, :campaign_id => @campaign.to_param, :character => invalid_character_attributes
+      post :create, :character => {:sheet => nil}
     end
-    assert_not_nil assigns(:character)
-    assert assigns(:character).invalid?
-    assert_equal user, assigns(:character).player
-    assert_equal @campaign, assigns(:character).campaign
+    assert assigns['character'].is_a?(Character)
     assert_response :success
-    assert_template :new
+    assert_template 'new'
   end
 
-  # show and edit have essentially the same behavior, so let's DRY up these tests
-  [:show, :edit].each do |action|
-    test "#{action} should redirect if not logged in" do
-      character = @campaign.characters.create valid_character_attributes.merge(:player => Factory(:user))
-      get action, :id => character.to_param
-      assert_redirected_to new_user_session_url
-    end
-
-    test "#{action} should not be found for non-existent character" do
-      set_current_user
-      get action, :id => 'nosir'
-      assert_response :not_found
-    end
-
-    test "should get #{action}" do
-      user = set_current_user
-      character = @campaign.characters.create valid_character_attributes.merge(:player => user)
-      get action, :id => character.to_param
-      assert_response :success
-      assert_equal character, assigns(:character)
-    end
+  test 'edit should succeed' do
+    expected = Factory(:character)
+    get :edit, :id => expected.id
+    assert_response :success
+    assert_template 'edit'
+    assert_equal expected, assigns['character']
   end
 
-  test "edit should be unauthorized" do
-    user = set_current_user
-    character = @campaign.characters.create valid_character_attributes.merge(:player => Factory(:user))
-    get :edit, :id => character.to_param
-    assert_response :unauthorized
-  end
-
-private
-
-  def valid_character_attributes
-    {
-      :name => 'Wizard McZappypants'
+  test 'update should succeed with new file' do
+    char = Factory(:character)
+    assert_equal 'Immilzin', char.name
+    put :update, {
+      :id => char.id,
+      :sheet => fixture_file_upload('Bronwyn.dnd4e')
     }
+    assert_redirected_to character_path(assigns['character'])
+    assert_equal 'Bronwyn', assigns['character'].name
   end
 
-  def invalid_character_attributes
-    {
-      :name => ''
-    }
+  test 'destroy should succeed' do
+    char = Factory(:character)
+    assert_difference 'Character.count', -1 do
+      delete :destroy, :id => char.id
+    end
+    assert_redirected_to characters_path
   end
+
 end

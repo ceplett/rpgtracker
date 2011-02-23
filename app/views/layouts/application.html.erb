@@ -8,17 +8,7 @@
 </head>
 <body>
 <div id="header"><div class="clearfix">
-	<h1><%= link_to_unless_current 'RPG Tracker', root_url %></h1>
-	<ul class="account">
-	<%- if user_signed_in? -%>
-		<li>Welcome, <%= link_to_unless_current current_user.name, root_path %></li>
-		<li><%= link_to_unless_current 'Edit Account', edit_user_registration_path %></li>
-		<li><%= link_to 'Log Out', destroy_user_session_path %></li>
-	<%- else -%>
-		<li><%= link_to 'Log In', new_user_session_path %>
-		<li><%= link_to 'Register', new_user_registration_path %>
-	<%- end -%>
-	</ul>
+	<h1>RPG Tracker</h1>
 </div></div>
 <div id="content"><div class="clearfix">
 <p id="notice"><%= notice %></p>

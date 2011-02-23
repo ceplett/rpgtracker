@@ -1,53 +1,11 @@
-body {
-	background: #FFE0BE;
-	color: #002C4F;
-	font-family: "Georgia", serif;
-	font-size: 16px;
-}
-#header > div, #footer > div, #content > div {
-	width: 960px;
-	padding: 10px 0;
-	margin: 0 auto;
-}
-#header {
-	background: #FFB76A;
-	background: #FFE0BE -webkit-gradient(linear, left top, left bottom, from(#FFE0BE), to(#9A6D3D));
-}
-#header h1 {
-	float: left;
-	font-size: 36px;
-	line-height: 64px;
-}
-#header h1 > a {
-	text-decoration: none;
-	color: #002C4F;
-}
-#header ul.account {
-	float:right;
-	overflow: hidden;
-	background: rgba(64,0,0,0.1);
-	border: 1px solid rgba(64,0,0,0.2);
-}
-#header ul.account > li {
-	float: left;
-	padding: 4px 8px;
-	border-left: 1px solid rgba(64,0,0,0.2);
-}
-#header ul.account > li:first-child {
-	border-left: none;
-}
 label, input {
 	display: block;
 }
 input[type=text], input[type=email], input[type=password], textarea {
-	font-family: "Georgia", serif;
-	font-size: 16px;
-	background: rgba(255, 255, 255, 0.25);
 	padding: 0.35em;
 	border: 1px solid #8b704b;
 }
 input[type=submit], a.button {
-	font-family: "Georgia", serif;
 	font-size: 16px;
 	font-weight: bold;
 	line-height: 30px;
@@ -64,15 +22,11 @@ input[type=submit], a.button {
 input:active[type=submit], a.button:active {
 	background: -webkit-gradient(linear, left top, left bottom, from(#200), to(#600));
 }
-div.column {
-	float: left;
-	width: 470px;
-	margin-left: 20px;
+table, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 0.25em;
 }
-div.column:first-child {
-	margin-left: 0;
-}
-
 /* clearfix for divs containing floated elements */
 .clearfix:after {
 	content: ".";
