@@ -15,17 +15,17 @@ class CharacterTest < ActiveSupport::TestCase
     end
   end
 
-  def test_campaign
-    camp = Factory(:campaign)
-    assert_equal 0, camp.characters.count
-
-    assert_difference 'Character.count', 1 do
-      c = camp.characters.create(:name => 'Booyah McGee', :player => Factory(:user))
-      assert c.valid?
-      assert_equal 1, camp.characters.count
-      assert_equal c, camp.characters.first
-      assert_equal camp, c.campaign
-    end
-  end
+  # def test_campaign
+  #   camp = Factory(:campaign)
+  #   assert_equal 0, camp.characters.count
+  # 
+  #   assert_difference 'Character.count', 1 do
+  #     c = camp.characters.create(:name => 'Booyah McGee', :player => Factory(:user))
+  #     assert c.valid?
+  #     assert_equal 1, camp.characters.count
+  #     assert_equal c, camp.characters.first
+  #     assert_equal camp, c.campaign
+  #   end
+  # end
 
 end

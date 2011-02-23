@@ -11,6 +11,7 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
+    @invitation = @campaign.invitations.build if @campaign.gm?(current_user)
     respond_with @campaign
   end
 
@@ -42,8 +43,7 @@ private
   end
 
   def require_ownership
-    camp = current_campaign
-    render_not_found(:unauthorized) unless current_user == camp.gm
+    render_not_found(:unauthorized) unless current_campaign.gm?(current_user)
   end
 
 end

@@ -13,7 +13,7 @@ Scenario: A user can create a new campaign
   And I should see "A New Campaign"
   And I should see "Some cool stuff happens, and the heros prevail"
 
-@wip
+@wip @javascript
 Scenario: A GM can invite users to join his campaign
   Given the following user exists:
     | name       | email           |
@@ -23,8 +23,8 @@ Scenario: A GM can invite users to join his campaign
     | title          | description        | gm                     |
     | A New Campaign | Cool stuff happens | email: game@master.com |
   And I am on the page for the campaign titled "A New Campaign"
-  Then I should see "Add Player"
-  When I follow "Add Player"
+  Then I should see "Invite Players"
   And I fill in the following:
     | Email | player@game.com |
+  And I press "Send Invitation"
   Then 1 invitation should exist

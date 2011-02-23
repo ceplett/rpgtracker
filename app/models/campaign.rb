@@ -7,6 +7,10 @@ class Campaign < ActiveRecord::Base
   validates   :gm, :presence => true
   validates   :title, :presence => true
 
+  def gm?(user)
+    user == self.gm
+  end
+
   def to_s
     title
   end
