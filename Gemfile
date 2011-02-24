@@ -7,6 +7,7 @@ gem 'dalli'
 gem 'devise'
 gem 'formtastic'
 gem 'paperclip', '~> 2.3'
+gem 'nokogiri'
 
 group :test do
   gem 'factory_girl_rails'

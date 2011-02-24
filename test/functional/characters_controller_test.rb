@@ -68,7 +68,8 @@ class CharactersControllerTest < ActionController::TestCase
       :sheet => fixture_file_upload('Bronwyn.dnd4e')
     }
     assert_redirected_to character_path(assigns['character'])
-    assert_equal 'Bronwyn', assigns['character'].name
+    char.reload
+    assert_equal 'Bronwyn', char.name
   end
 
   test 'destroy should succeed' do

@@ -146,6 +146,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mysql
+  nokogiri
   paperclip (~> 2.3)
   rails (~> 3.0.4)
   wirble
