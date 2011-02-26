@@ -3,6 +3,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
+  def fixture_file(file_name)
+    Rails.root.join('test/fixtures', file_name)
+  end
 end
 
 class ActionController::TestCase

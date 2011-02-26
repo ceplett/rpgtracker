@@ -65,10 +65,13 @@ class CharactersControllerTest < ActionController::TestCase
     assert_equal 'Immilzin', char.name
     put :update, {
       :id => char.id,
-      :sheet => fixture_file_upload('Bronwyn.dnd4e')
+      :character => {
+        :sheet => fixture_file_upload('Bronwyn.dnd4e')
+      }
     }
-    assert_redirected_to character_path(assigns['character'])
     char.reload
+    assert_equal char, assigns[:character]
+    assert_redirected_to character_path(char)
     assert_equal 'Bronwyn', char.name
   end
 

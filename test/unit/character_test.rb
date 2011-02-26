@@ -3,7 +3,7 @@ require 'test_helper'
 class CharacterTest < ActiveSupport::TestCase
 
   test 'importing a character sheet' do
-    char = Character.new :sheet => File.new('test/fixtures/Immilzin.dnd4e')
+    char = Character.new :sheet => File.new(fixture_file('Immilzin.dnd4e'))
     assert char.valid?
     assert_equal 'Immilzin', char.name
     assert_equal 1, char.level
@@ -24,19 +24,19 @@ class CharacterTest < ActiveSupport::TestCase
   end
 
   test 'description' do
-    char = Character.new :sheet => File.new('test/fixtures/Bronwyn.dnd4e')
+    char = Character.new :sheet => File.new(fixture_file('Bronwyn.dnd4e'))
     assert char.valid?
     assert_equal 'Level 17 Elf Devoted Cleric', char.description
-    char = Character.new :sheet => File.new('test/fixtures/Immilzin.dnd4e')
+    char = Character.new :sheet => File.new(fixture_file('Immilzin.dnd4e'))
     assert char.valid?
     assert_equal 'Level 1 Githzerai Pursuing Avenger', char.description
   end
 
   test 'half level' do
-    char = Character.new :sheet => File.new('test/fixtures/Bronwyn.dnd4e')
+    char = Character.new :sheet => File.new(fixture_file('Bronwyn.dnd4e'))
     assert char.valid?
     assert_equal 8, char.half_level
-    char = Character.new :sheet => File.new('test/fixtures/Immilzin.dnd4e')
+    char = Character.new :sheet => File.new(fixture_file('Immilzin.dnd4e'))
     assert char.valid?
     assert_equal 0, char.half_level
   end
