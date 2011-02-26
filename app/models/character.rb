@@ -2,6 +2,7 @@ require 'rexml/document'
 
 class Character < ActiveRecord::Base
   ABILITIES = [:strength, :constitution, :dexterity, :intelligence, :wisdom, :charisma]
+  DEFENSES  = [:armor_class, :fortitude, :reflex, :will]
 
   has_attached_file :sheet
 

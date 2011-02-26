@@ -22,6 +22,11 @@ class CreateCharacters < ActiveRecord::Migration
       t.integer   :wisdom_modifier
       t.integer   :charisma_modifier
 
+      t.integer   :armor_class
+      t.integer   :fortitude
+      t.integer   :reflex
+      t.integer   :will
+
       t.string    :sheet_file_name
       t.string    :sheet_content_type
       t.integer   :sheet_file_size

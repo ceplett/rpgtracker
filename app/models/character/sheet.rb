@@ -1,6 +1,8 @@
 class Character
   class Sheet < Nokogiri::XML::SAX::Document
-    KNOWN_STATS = Character::ABILITIES + Character::ABILITIES.map { |abil| "#{abil}_modifier".to_sym }
+    KNOWN_STATS = Character::ABILITIES + Character::DEFENSES +
+                  Character::ABILITIES.map { |abil| "#{abil}_modifier".to_sym } +
+                  
     KNOWN_RULES_ELTS = [:race, :klass, :build]
 
     def initialize(character)
@@ -58,9 +60,7 @@ class Character
     def handle_alias(start, attributes)
       return unless @current_stat_value && start
       stat = attributes['name'].downcase.split.join('_').to_sym
-      if KNOWN_STATS.include?(stat)
-        @character.send "#{stat}=".to_sym, @current_stat_value
-      end
+      @character.send("#{stat}=".to_sym, @current_stat_value) if KNOWN_STATS.include?(stat)
     end
 
     def handle_ruleselementtally(start, attributes)

@@ -9,18 +9,22 @@ class CharacterTest < ActiveSupport::TestCase
     assert_equal 1, char.level
     assert_equal 'Avenger', char.klass
     assert_equal 'Pursuing Avenger', char.build
-    assert_equal 8, char.strength
-    assert_equal -1, char.strength_modifier
-    assert_equal 10, char.constitution
-    assert_equal 0, char.constitution_modifier
-    assert_equal 15, char.dexterity
-    assert_equal 2, char.dexterity_modifier
-    assert_equal 13, char.intelligence
-    assert_equal 1, char.intelligence_modifier
-    assert_equal 20, char.wisdom
-    assert_equal 5, char.wisdom_modifier
-    assert_equal 10, char.charisma
-    assert_equal 0, char.charisma_modifier
+    assert_equal 8,   char.strength
+    assert_equal -1,  char.strength_modifier
+    assert_equal 10,  char.constitution
+    assert_equal 0,   char.constitution_modifier
+    assert_equal 15,  char.dexterity
+    assert_equal 2,   char.dexterity_modifier
+    assert_equal 13,  char.intelligence
+    assert_equal 1,   char.intelligence_modifier
+    assert_equal 20,  char.wisdom
+    assert_equal 5,   char.wisdom_modifier
+    assert_equal 10,  char.charisma
+    assert_equal 0,   char.charisma_modifier
+    assert_equal 15,  char.armor_class
+    assert_equal 11,  char.fortitude
+    assert_equal 13,  char.reflex
+    assert_equal 16,  char.will
   end
 
   test 'description' do
