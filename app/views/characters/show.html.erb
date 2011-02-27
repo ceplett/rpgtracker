@@ -29,6 +29,16 @@
     <% end %>
     </table>
   </div>
+
+  <div class="powers">
+    <h4>Powers</h4>
+    <ul>
+    <% @character.powers.each do |power| %>
+      <li><%= link_to power.name, power.compendium_url, :class => 'power' %>
+    <% end %>
+    </ul>
+    <iframe id="power" width="590px" height="300px" />
+  </div>
 </div>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |

@@ -40,7 +40,10 @@ table, td {
 	visibility: hidden;
 	line-height: 0;
 	height: 0;
-} 
+}
+iframe {
+	border: 1px solid rgb(204, 204, 204);
+}
 /*
 div.character-sheet > div {
 	border: 1px solid rgb(204, 204, 204);
