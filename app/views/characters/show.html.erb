@@ -1,16 +1,35 @@
-<h1><%= @character.name %></h1>
-<div class="description"><%= @character.description %></div>
+<div class="character-sheet">
+  <div class="info">
+    <h1><%= @character.name %></h1>
+    <p><%= @character.description %></p>
+  </div>
 
-<table>
-<% Character::ABILITIES.each do |ability| %>
-  <tr>
-    <td><%= ability.to_s.upcase %></td>
-    <td><%= @character.send(ability) %></td>
-    <td><%= @character.ability_mod(ability) %></td>
-    <td><%= @character.ability_chk(ability) %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="abilities">
+    <h4>Abilities</h4>
+    <table>
+    <% Character::ABILITIES.each do |ability| %>
+      <tr>
+        <td><%= ability.to_s.titlecase %></td>
+        <td><%= @character.send(ability) %></td>
+        <td><%= @character.ability_mod(ability) %></td>
+        <td><%= @character.ability_chk(ability) %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+  <div class="defenses">
+    <h4>Defenses</h4>
+    <table>
+    <% Character::DEFENSES.each do |defense| %>
+      <tr>
+        <td><%= defense.to_s.titlecase %></td>
+        <td><%= @character.send(defense) %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', characters_path %>

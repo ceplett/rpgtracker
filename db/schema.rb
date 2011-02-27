@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131024922) do
+ActiveRecord::Schema.define(:version => 20110227143437) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(:version => 20110131024922) do
     t.integer  "fortitude"
     t.integer  "reflex"
     t.integer  "will"
+    t.integer  "hit_points"
+    t.integer  "current_hit_points"
+    t.integer  "temporary_hit_points"
+    t.integer  "healing_surges"
+    t.integer  "current_healing_surges"
     t.string   "sheet_file_name"
     t.string   "sheet_content_type"
     t.integer  "sheet_file_size"
@@ -41,5 +46,18 @@ ActiveRecord::Schema.define(:version => 20110131024922) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "powers", :force => true do |t|
+    t.integer  "character_id"
+    t.string   "name"
+    t.string   "power_usage"
+    t.string   "action_type"
+    t.string   "compendium_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "powers", ["character_id"], :name => "index_powers_on_character_id"
+  add_index "powers", ["name"], :name => "index_powers_on_name"
 
 end

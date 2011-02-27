@@ -27,6 +27,13 @@ class CreateCharacters < ActiveRecord::Migration
       t.integer   :reflex
       t.integer   :will
 
+      t.integer   :hit_points
+      t.integer   :healing_surges
+
+      t.integer   :current_hit_points
+      t.integer   :temporary_hit_points
+      t.integer   :current_healing_surges
+
       t.string    :sheet_file_name
       t.string    :sheet_content_type
       t.integer   :sheet_file_size

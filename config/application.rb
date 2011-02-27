@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
@@ -40,5 +39,8 @@ module RpgTracker
     config.filter_parameters += [:password]
 
     config.cache_store = :dalli_store
+
+    require 'rack/mobile-detect'
+    config.middleware.use Rack::MobileDetect
   end
 end
