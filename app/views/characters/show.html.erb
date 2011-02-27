@@ -4,6 +4,18 @@
     <p><%= @character.description %></p>
   </div>
 
+  <div class="defenses">
+    <h4>Defenses</h4>
+    <table>
+    <% Character::DEFENSES.each do |defense| %>
+      <tr>
+        <td><%= defense.to_s.titlecase %></td>
+        <td><%= @character.send(defense) %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
   <div class="abilities">
     <h4>Abilities</h4>
     <table>
@@ -18,26 +30,18 @@
     </table>
   </div>
 
-  <div class="defenses">
-    <h4>Defenses</h4>
-    <table>
-    <% Character::DEFENSES.each do |defense| %>
-      <tr>
-        <td><%= defense.to_s.titlecase %></td>
-        <td><%= @character.send(defense) %></td>
-      </tr>
-    <% end %>
-    </table>
-  </div>
-
   <div class="powers">
     <h4>Powers</h4>
-    <ul>
-    <% @character.powers.each do |power| %>
-      <li><%= link_to power.name, power.compendium_url, :class => 'power' %>
-    <% end %>
-    </ul>
-    <iframe id="power" width="590px" height="300px" />
+    <div class="clearfix">
+      <ul class="list">
+      <% @character.powers.each do |power| %>
+        <li><%= link_to power.name, power.compendium_url, :class => 'power' %>
+      <% end %>
+      </ul>
+      <div class="iframe-wrapper">
+        <iframe id="power" width="590px" height="300px"></iframe>
+      </div>
+    </div>
   </div>
 </div>
 

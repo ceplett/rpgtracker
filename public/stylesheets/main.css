@@ -41,10 +41,20 @@ table, td {
 	line-height: 0;
 	height: 0;
 }
-iframe {
-	border: 1px solid rgb(204, 204, 204);
+
+ul.list > li.selected {
+	background: blue;
 }
-/*
+ul.list > li.selected > a {
+	color: white;
+}
+ul.list > li > a {
+	display: block;
+	line-height: 20px;
+	padding: 0 10px;
+	text-decoration: none;
+}
+
 div.character-sheet > div {
 	border: 1px solid rgb(204, 204, 204);
 	background: rgb(238, 238, 238);
@@ -52,7 +62,7 @@ div.character-sheet > div {
 	border-radius: 7px 7px 0 0;
 	overflow: hidden;
 	margin: 5px;
-	float: left;
+	float:left;
 	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 div.character-sheet > div > h4 {
@@ -60,4 +70,18 @@ div.character-sheet > div > h4 {
 	margin: -10px -10px 10px -10px;
 	background: rgb(204, 204, 204);
 }
-*/
+div.character-sheet > div.info {
+	float: none;
+	border-radius: 0;
+	margin: 0;
+	border: none;
+}
+div.character-sheet > div.powers ul.list {
+	float:left;
+}
+div.iframe-wrapper {
+	border: 1px solid rgb(204, 204, 204);
+	width: 590px;
+	height: 300px;
+	overflow: auto;
+}
